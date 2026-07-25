@@ -3,7 +3,7 @@ from auth import get_credentials, build_service
 
 CONFIG_FILE = 'config.json'
 SPREADSHEET_TITLE = 'Job Applications'
-HEADERS = ['Name', 'Position', 'Salary', 'Status', 'Phone Number']
+HEADERS = ['Name', 'Position', 'Salary', 'Status', 'Phone Number', 'Contact Name', 'Description File']
 
 STATUS_OPTIONS = ['Pending', 'Needs Calling', 'Ready', 'Declined', 'Approved', 'Interviewed']
 
@@ -31,7 +31,7 @@ def create_spreadsheet(service) -> tuple[str, int, str]:
 def write_headers(service, spreadsheet_id: str, sheet_title: str) -> None:
     service.spreadsheets().values().update(
         spreadsheetId=spreadsheet_id,
-        range=f'{sheet_title}!A1:E1',
+        range=f'{sheet_title}!A1:G1',
         valueInputOption='RAW',
         body={'values': [HEADERS]}
     ).execute()

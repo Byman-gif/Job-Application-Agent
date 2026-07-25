@@ -28,6 +28,22 @@ python add_application.py --name "<company>" --position "<position>" --salary "<
 
 `--phone` is optional. `--status` must be one of: `Pending`, `Needs Calling`, `Ready`, `Declined`, `Approved`, `Interviewed`
 
+### Archiving the full job description
+
+When the user pastes the full text of a job posting (not just a short summary), archive it so it can still be
+found after the posting is taken down:
+
+1. Write the pasted text verbatim to a temp file (e.g. in the scratchpad directory).
+2. Pass it with `--description-file <path>` (and `--url "<posting URL>"` if one was given).
+
+```
+python add_application.py --name "<company>" --position "<position>" --salary "<salary>" --status "<status>" --description-file "<temp file path>" --url "<posting url>"
+```
+
+This copies the text into `job_descriptions/<date>_<company>_<position>.txt` and records that path in the
+spreadsheet's `Description File` column. `job_descriptions/` is local-only (gitignored) — it is not synced
+anywhere else, so treat it as the durable copy.
+
 ### Status color codes
 | Status | Color |
 |---|---|
